@@ -1,13 +1,14 @@
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+access_token = os.environ.get("API_key")
 
 # Specify the pre-trained model and tokenizer (replace with your desired task)
 model_name = "bert-base-uncased"  # Example for sentiment analysis
 task = "sentiment-analysis"  # Adjust for your specific task
 
 # Load the model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSequenceClassification.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name, token=access_token)
+model = AutoModelForSequenceClassification.from_pretrained(model_name, token=access_token)
 
 def predict(text):
     """Performs prediction using the loaded Hugging Face Transformer model.
